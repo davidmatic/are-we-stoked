@@ -7,29 +7,25 @@
     <style>
       body {
         font-family: ui-monospace, Menlo, Consolas, monospace;
-        margin: 3rem 1rem;
+        margin: 1rem;
         background: #fff;
-        color: #111;
+        color: #000;
       }
+      /* Dark mode is a green-on-black terminal. */
       @media (prefers-color-scheme: dark) {
-        body { background: #111; color: #eee; }
-        a { color: #9cf; }
+        body { background: #000; color: #33ff66; }
+        a, footer { color: #1f9e45; }
       }
-      main { max-width: 40rem; margin: 0 auto; }
-      h1 { font-size: 1.5rem; font-weight: normal; margin-bottom: 2rem; }
-      pre { font: inherit; line-height: 1.6; white-space: pre-wrap; }
-      footer { margin-top: 3rem; font-size: 0.8rem; opacity: 0.6; }
+      pre { font: inherit; line-height: 1.6; margin: 0; }
+      footer { margin-top: 2rem; font-size: 0.8rem; color: #888; }
     </style>
   </head>
   <body>
-    <main>
-      <h1>are we stoked?</h1>
-      <pre id="resorts"></pre>
-      <footer>
-        data: <a href="https://www.weather.gov/slc/">national weather service</a>
-        · next 48 hours
-      </footer>
-    </main>
+    <pre id="resorts"></pre>
+    <footer>
+      data: <a href="https://www.weather.gov/slc/">national weather service</a>
+      · next 48 hours
+    </footer>
     <script type="module">
       import { resortStoke } from "./stoke.js";
 
