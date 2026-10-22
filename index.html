@@ -60,16 +60,23 @@
       const nameColumnWidth = Math.max(...resorts.map(({ name }) => name.length)) + 3;
       const stokes = new Map(resorts.map(({ name }) => [name, "..."]));
 
+      // A colour emoji breaks the dark terminal look, so dark mode shrugs in text.
+      const darkMode = matchMedia("(prefers-color-scheme: dark)");
+      function display(stoke) {
+        return stoke === "🤷" && darkMode.matches ? "¯\\_(ツ)_/¯" : stoke;
+      }
+
       function render() {
         document.getElementById("resorts").textContent = areas
           .map((area) =>
             area.resorts
-              .map(({ name }) => name.padEnd(nameColumnWidth) + stokes.get(name))
+              .map(({ name }) => name.padEnd(nameColumnWidth) + display(stokes.get(name)))
               .join("\n"),
           )
           .join("\n\n");
       }
 
+      darkMode.addEventListener("change", render);
       render();
       const now = new Date();
       for (const { name, gridpoint } of resorts) {
