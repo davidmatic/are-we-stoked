@@ -23,3 +23,6 @@ build/
 
 # Logs
 *.log
+
+# Private research notes
+docs/research/
