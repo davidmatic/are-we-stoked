@@ -1,25 +1,30 @@
 const MM_PER_INCH = 25.4;
 const HOUR_MS = 60 * 60 * 1000;
 const WINDOW_MS = 48 * HOUR_MS;
+const INCHES_PER_O = 2;
+const MAX_OS = 12;
 
 export function forecastInches(snowfallAmount, now) {
   const windowStart = now.getTime();
   const windowEnd = windowStart + WINDOW_MS;
   return snowfallAmount.values.reduce((total, { validTime, value }) => {
-    const [startText, durationText] = validTime.split("/");
+    const [startText, durationText = ""] = validTime.split("/");
     const start = Date.parse(startText);
-    const end = start + durationMs(durationText);
-    const overlap =
-      Math.min(end, windowEnd) - Math.max(start, windowStart);
+    const duration = durationMs(durationText);
+    if (Number.isNaN(start) || !duration) return total;
+    const end = start + duration;
+    const overlap = Math.min(end, windowEnd) - Math.max(start, windowStart);
     if (overlap <= 0) return total;
-    return total + (value / MM_PER_INCH) * (overlap / (end - start));
+    return total + (value / MM_PER_INCH) * (overlap / duration);
   }, 0);
 }
 
-// NWS durations look like PT6H, PT12H or P1DT6H.
+// NWS durations look like PT6H, PT1H30M or P1DT6H; anything else is unreadable (0).
 function durationMs(text) {
-  const [, days = 0, hours = 0] = text.match(/^P(?:(\d+)D)?(?:T(\d+)H)?$/);
-  return (Number(days) * 24 + Number(hours)) * HOUR_MS;
+  const match = text.match(/^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?)?$/);
+  if (!match) return 0;
+  const [, days = 0, hours = 0, minutes = 0] = match;
+  return ((Number(days) * 24 + Number(hours)) * 60 + Number(minutes)) * 60 * 1000;
 }
 
 export async function resortStoke(
@@ -28,16 +33,17 @@ export async function resortStoke(
   fetch,
   { retryDelayMs = 3000 } = {},
 ) {
-  try {
-    return await fetchStoke(gridpoint, now, fetch);
-  } catch {
-    await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
+  const attempts = 2;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      return await fetchStoke(gridpoint, now, fetch);
+    } catch {
+      if (attempt < attempts) {
+        await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
+      }
+    }
   }
-  try {
-    return await fetchStoke(gridpoint, now, fetch);
-  } catch {
-    return "🤷";
-  }
+  return "🤷";
 }
 
 async function fetchStoke(gridpoint, now, fetch) {
@@ -48,7 +54,7 @@ async function fetchStoke(gridpoint, now, fetch) {
 }
 
 export function stokeText(inches) {
-  if (inches < 2) return "not stoked";
-  const os = Math.min(Math.floor(inches / 2), 12);
-  return `getting st${"o".repeat(os)}ked`;
+  if (inches < INCHES_PER_O) return "not stoked";
+  const oCount = Math.min(Math.floor(inches / INCHES_PER_O), MAX_OS);
+  return `getting st${"o".repeat(oCount)}ked`;
 }

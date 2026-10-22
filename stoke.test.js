@@ -40,6 +40,16 @@ test("counts the in-window share of blocks that straddle either edge", () => {
   assert.ok(Math.abs(forecastInches(amount, now) - 4) < 1e-9);
 });
 
+test("understands minute durations and skips blocks it can't read", () => {
+  const amount = snowfall(
+    ["2026-10-23T12:00:00+00:00/PT1H30M", 25.4],
+    ["2026-10-23T18:00:00+00:00/P1W", 254],
+    ["not a time", 254],
+    ["2026-10-24T00:00:00+00:00/PT6H", 25.4],
+  );
+  assert.equal(forecastInches(amount, now), 2);
+});
+
 test("under 2 inches is not stoked", () => {
   assert.equal(stokeText(0), "not stoked");
   assert.equal(stokeText(1.99), "not stoked");

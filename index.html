@@ -33,32 +33,42 @@
     <script type="module">
       import { resortStoke } from "./stoke.js";
 
-      // Grouped by Area; each Resort uses its on-mountain NWS gridpoint.
+      // Each Resort uses its on-mountain NWS gridpoint.
       const areas = [
-        [
-          ["alta", "SLC/108,167"],
-          ["snowbird", "SLC/107,166"],
-          ["brighton", "SLC/110,167"],
-          ["solitude", "SLC/110,168"],
-        ],
-        [
-          ["park city mountain", "SLC/111,169"],
-          ["deer valley", "SLC/114,168"],
-        ],
-        [
-          ["snowbasin", "SLC/104,195"],
-          ["powder mountain", "SLC/107,203"],
-        ],
+        {
+          name: "cottonwood canyons",
+          resorts: [
+            { name: "alta", gridpoint: "SLC/108,167" },
+            { name: "snowbird", gridpoint: "SLC/107,166" },
+            { name: "brighton", gridpoint: "SLC/110,167" },
+            { name: "solitude", gridpoint: "SLC/110,168" },
+          ],
+        },
+        {
+          name: "park city",
+          resorts: [
+            { name: "park city mountain", gridpoint: "SLC/111,169" },
+            { name: "deer valley", gridpoint: "SLC/114,168" },
+          ],
+        },
+        {
+          name: "ogden valley",
+          resorts: [
+            { name: "snowbasin", gridpoint: "SLC/104,195" },
+            { name: "powder mountain", gridpoint: "SLC/107,203" },
+          ],
+        },
       ];
 
-      const width = Math.max(...areas.flat().map(([name]) => name.length)) + 3;
-      const stokes = new Map(areas.flat().map(([name]) => [name, "..."]));
+      const resorts = areas.flatMap((area) => area.resorts);
+      const nameColumnWidth = Math.max(...resorts.map(({ name }) => name.length)) + 3;
+      const stokes = new Map(resorts.map(({ name }) => [name, "..."]));
 
       function render() {
         document.getElementById("resorts").textContent = areas
-          .map((resorts) =>
-            resorts
-              .map(([name]) => name.padEnd(width) + stokes.get(name))
+          .map((area) =>
+            area.resorts
+              .map(({ name }) => name.padEnd(nameColumnWidth) + stokes.get(name))
               .join("\n"),
           )
           .join("\n\n");
@@ -66,7 +76,7 @@
 
       render();
       const now = new Date();
-      for (const [name, gridpoint] of areas.flat()) {
+      for (const { name, gridpoint } of resorts) {
         resortStoke(gridpoint, now, fetch).then((stoke) => {
           stokes.set(name, stoke);
           render();
