@@ -12,9 +12,9 @@ const areas = [
     ],
   },
   {
-    name: "park city",
+    name: "wasatch back",
     resorts: [
-      { name: "park city mountain", gridpoint: "SLC/111,169" },
+      { name: "park city", gridpoint: "SLC/111,169" },
       { name: "deer valley", gridpoint: "SLC/114,168" },
     ],
   },

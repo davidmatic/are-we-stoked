@@ -5,11 +5,11 @@ A deliberately simple, text-only page that tells you whether Utah ski resorts ar
 ## Language
 
 **Resort**:
-A ski area on the page's fixed list (Alta, Snowbird, Brighton, Solitude, Park City Mountain, Deer Valley, Snowbasin, Powder Mountain), each with its own verdict. Always named as the ski area, never the nearby town.
-_Avoid_: Location, city, mountain, spot, "Park City", "Ogden"
+A ski area on the page's fixed list (Alta, Snowbird, Brighton, Solitude, Park City, Deer Valley, Snowbasin, Powder Mountain), each with its own verdict. Named as the ski area, never the nearby town; "Park City" means the Park City Mountain resort, not the town.
+_Avoid_: Location, city, mountain, spot, "Park City Mountain", "Ogden"
 
 **Area**:
-A group of Resorts close enough to share weather (Cottonwood Canyons, Park City, Ogden Valley), shown together on the page.
+A group of Resorts close enough to share weather (Cottonwood Canyons, Wasatch Back, Ogden Valley), shown together on the page.
 _Avoid_: Region, canyon, zone
 
 **Stoke**:
