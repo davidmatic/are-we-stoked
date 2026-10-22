@@ -56,5 +56,5 @@ async function fetchStoke(gridpoint, now, fetch) {
 export function stokeText(inches) {
   if (inches < INCHES_PER_O) return "not stoked";
   const oCount = Math.min(Math.floor(inches / INCHES_PER_O), MAX_OS);
-  return `getting st${"o".repeat(oCount)}ked`;
+  return `get st${"o".repeat(oCount)}ked`;
 }

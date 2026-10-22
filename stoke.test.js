@@ -55,17 +55,17 @@ test("under 2 inches is not stoked", () => {
   assert.equal(stokeText(1.99), "not stoked");
 });
 
-test("2 inches is getting stoked, with one more o per extra 2 inches", () => {
-  assert.equal(stokeText(2), "getting stoked");
-  assert.equal(stokeText(3.9), "getting stoked");
-  assert.equal(stokeText(4), "getting stooked");
-  assert.equal(stokeText(6), "getting stoooked");
-  assert.equal(stokeText(10.5), "getting stoooooked");
+test("2 inches is get stoked, with one more o per extra 2 inches", () => {
+  assert.equal(stokeText(2), "get stoked");
+  assert.equal(stokeText(3.9), "get stoked");
+  assert.equal(stokeText(4), "get stooked");
+  assert.equal(stokeText(6), "get stoooked");
+  assert.equal(stokeText(10.5), "get stoooooked");
 });
 
 test("stoke tops out at 12 o's", () => {
-  assert.equal(stokeText(24), "getting stooooooooooooked");
-  assert.equal(stokeText(60), "getting stooooooooooooked");
+  assert.equal(stokeText(24), "get stooooooooooooked");
+  assert.equal(stokeText(60), "get stooooooooooooked");
 });
 
 function gridpointResponse(amount) {
@@ -82,7 +82,7 @@ test("a resort's stoke comes from its NWS gridpoint forecast", async () => {
   };
   assert.equal(
     await resortStoke("SLC/108,167", now, fetch),
-    "getting stooked",
+    "get stooked",
   );
   assert.deepEqual(requested, ["https://api.weather.gov/gridpoints/SLC/108,167"]);
 });
@@ -95,7 +95,7 @@ test("a failed NWS request is retried once", async () => {
   const fetch = async () => responses.shift();
   assert.equal(
     await resortStoke("SLC/108,167", now, fetch, { retryDelayMs: 0 }),
-    "getting stoked",
+    "get stoked",
   );
 });
 

@@ -16,14 +16,14 @@ _Avoid_: Region, canyon, zone
 How excited the page is about a Resort's snow; more snow means more stoke.
 _Avoid_: Hype, excitement level, rating
 
-**Getting stoked**:
+**Get stoked**:
 The Stoke for snow that is forecast to fall at a Resort but hasn't fallen yet; it gains an extra "o" as the forecast amount grows.
-_Avoid_: Stoked (for forecast snow), incoming, predicted
+_Avoid_: Getting stoked, Stoked (for forecast snow), incoming, predicted
 
 **Stoked**:
 The Stoke for snow that has actually fallen at a Resort. Reserved for when the page learns about fallen snow.
-_Avoid_: Getting stoked (for fallen snow), fresh, pow day
+_Avoid_: Get stoked (for fallen snow), fresh, pow day
 
 **Not stoked**:
-The verdict for a Resort with too little snow coming to be worth getting stoked about.
+The verdict for a Resort with too little snow coming to get stoked about.
 _Avoid_: No snow, dry
