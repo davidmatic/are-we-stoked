@@ -1,0 +1,58 @@
+import { resortStoke } from "./stoke.js";
+
+// Each Resort uses its on-mountain NWS gridpoint.
+const areas = [
+  {
+    name: "cottonwood canyons",
+    resorts: [
+      { name: "alta", gridpoint: "SLC/108,167" },
+      { name: "snowbird", gridpoint: "SLC/107,166" },
+      { name: "brighton", gridpoint: "SLC/110,167" },
+      { name: "solitude", gridpoint: "SLC/110,168" },
+    ],
+  },
+  {
+    name: "park city",
+    resorts: [
+      { name: "park city mountain", gridpoint: "SLC/111,169" },
+      { name: "deer valley", gridpoint: "SLC/114,168" },
+    ],
+  },
+  {
+    name: "ogden valley",
+    resorts: [
+      { name: "snowbasin", gridpoint: "SLC/104,195" },
+      { name: "powder mountain", gridpoint: "SLC/107,203" },
+    ],
+  },
+];
+
+const resorts = areas.flatMap((area) => area.resorts);
+const nameColumnWidth = Math.max(...resorts.map(({ name }) => name.length)) + 3;
+const stokes = new Map(resorts.map(({ name }) => [name, "..."]));
+
+// A colour emoji breaks the dark terminal look, so dark mode shrugs in text.
+const darkMode = matchMedia("(prefers-color-scheme: dark)");
+function display(stoke) {
+  return stoke === "🤷" && darkMode.matches ? "¯\\_(ツ)_/¯" : stoke;
+}
+
+function render() {
+  document.getElementById("resorts").textContent = areas
+    .map((area) =>
+      area.resorts
+        .map(({ name }) => name.padEnd(nameColumnWidth) + display(stokes.get(name)))
+        .join("\n"),
+    )
+    .join("\n\n");
+}
+
+darkMode.addEventListener("change", render);
+render();
+const now = new Date();
+for (const { name, gridpoint } of resorts) {
+  resortStoke(gridpoint, now, fetch).then((stoke) => {
+    stokes.set(name, stoke);
+    render();
+  });
+}

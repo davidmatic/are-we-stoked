@@ -1,5 +1,7 @@
 # are-we-stoked
 
+Pushing to `main` deploys the live site (GitHub Pages, davidmatic.github.io/are-we-stoked); Pages only works while the repo stays public.
+
 ## Agent skills
 
 ### Issue tracker
