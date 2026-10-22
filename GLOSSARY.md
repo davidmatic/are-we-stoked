@@ -1,15 +1,15 @@
 # Are We Stoked
 
-A deliberately simple, text-only page that tells you whether Utah ski resorts are getting snow, and how excited to be about it.
+A deliberately simple, text-only page that tells you whether Utah and Eastern Sierra ski resorts are getting snow, and how excited to be about it.
 
 ## Language
 
 **Resort**:
-A ski area on the page's fixed list (Alta, Snowbird, Brighton, Solitude, Park City, Deer Valley, Snowbasin, Powder Mountain), each with its own verdict. Named as the ski area, never the nearby town; "Park City" means the Park City Mountain resort, not the town.
-_Avoid_: Location, city, mountain, spot, "Park City Mountain", "Ogden"
+A ski area on the page's fixed list (Alta, Snowbird, Brighton, Solitude, Park City, Deer Valley, Snowbasin, Powder Mountain, Mammoth, June), each with its own verdict. Named as the ski area, never the nearby town; "Park City" means the Park City Mountain resort, not the town; "Mammoth" means Mammoth Mountain and "June" means June Mountain.
+_Avoid_: Location, city, mountain, spot, "Park City Mountain", "Ogden", "Mammoth Mountain", "Mammoth Lakes", "June Mountain", "June Lake"
 
 **Area**:
-A group of Resorts close enough to share weather (Cottonwood Canyons, Wasatch Back, Ogden Valley), shown together on the page.
+A group of Resorts close enough to share weather (Cottonwood Canyons, Wasatch Back, Ogden Valley, Eastern Sierra), shown together on the page.
 _Avoid_: Region, canyon, zone
 
 **Stoke**:

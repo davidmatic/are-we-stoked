@@ -1,6 +1,6 @@
 # are-we-stoked
 
-A text-only page that says whether Salt Lake ski resorts are getting snow in the next 48 hours, using the National Weather Service forecast.
+A text-only page that says whether Salt Lake and Eastern Sierra ski resorts are getting snow in the next 48 hours, using the National Weather Service forecast.
 
 - `index.html` – the page (no build step)
 - `page.js` – fetches every Resort and renders the list

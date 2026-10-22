@@ -25,6 +25,13 @@ const areas = [
       { name: "powder mountain", gridpoint: "SLC/107,203" },
     ],
   },
+  {
+    name: "eastern sierra",
+    resorts: [
+      { name: "mammoth", gridpoint: "REV/57,17" },
+      { name: "june", gridpoint: "REV/56,23" },
+    ],
+  },
 ];
 
 const resorts = areas.flatMap((area) => area.resorts);
