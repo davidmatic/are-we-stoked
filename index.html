@@ -19,14 +19,17 @@
         a, footer { color: #1f9e45; }
       }
       pre { font: inherit; line-height: 1.6; margin: 0; }
+      /* Two blank table lines above (2 × 1.6 line-height, divided by the 0.8 font). */
+      .legend { font-size: 0.8em; margin: 4em 0 0; }
       footer { margin-top: 2rem; font-size: 0.8rem; color: #888; }
     </style>
   </head>
   <body>
     <pre id="resorts"></pre>
+    <p class="legend">o = 2 in</p>
     <footer>
       data: <a href="https://www.weather.gov/slc/">national weather service</a>
-      · next 48 hours
+      · snow in next 48 hours
     </footer>
     <script type="module" src="page.js"></script>
   </body>

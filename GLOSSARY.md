@@ -24,6 +24,10 @@ _Avoid_: Getting stoked, Stoked (for forecast snow), incoming, predicted
 The Stoke for snow that has actually fallen at a Resort. Reserved for when the page learns about fallen snow.
 _Avoid_: Get stoked (for fallen snow), fresh, pow day
 
+**Stoke stake**:
+The page read like a snow stake: every Stoke starts in the same column and each "o" is a fixed mark, so day to day only the length of the Stoke changes, never the layout around it.
+_Avoid_: Meter, gauge, bar, scale
+
 **Not stoked**:
 The verdict for a Resort with too little snow coming to get stoked about.
 _Avoid_: No snow, dry
